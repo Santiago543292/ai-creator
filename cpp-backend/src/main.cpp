@@ -1,73 +1,89 @@
 #include <windows.h>
 #include <string>
 #include <vector>
+#include <cmath>
 
 // Forward declarations
 class MainWindow;
 static MainWindow* g_pMainWindow = nullptr;
 
-// Color constants (QIX Branding)
-const COLORREF COLOR_DARK_BG = RGB(20, 20, 25);      // Dark background
-const COLORREF COLOR_NEON_GREEN = RGB(0, 221, 0);    // Neon green accent
-const COLORREF COLOR_TEXT = RGB(200, 200, 200);      // Light text
-const COLORREF COLOR_BUTTON = RGB(40, 40, 50);       // Button background
+// QIX Color Scheme
+const COLORREF COLOR_DARK_BG = RGB(20, 20, 25);
+const COLORREF COLOR_NEON_GREEN = RGB(0, 221, 0);
+const COLORREF COLOR_TEXT = RGB(200, 200, 200);
+const COLORREF COLOR_BUTTON = RGB(40, 40, 50);
+const COLORREF COLOR_BUTTON_HOVER = RGB(60, 60, 70);
+const COLORREF COLOR_BORDER = RGB(50, 50, 60);
+const COLORREF COLOR_GRAPH_LINE1 = RGB(100, 150, 255);  // Blue
+const COLORREF COLOR_GRAPH_LINE2 = RGB(255, 100, 100);  // Red
+const COLORREF COLOR_GRAPH_LINE3 = RGB(100, 255, 100);  // Green
+const COLORREF COLOR_GRAPH_LINE4 = RGB(200, 100, 255);  // Purple
 
 // Control IDs
 enum ControlID {
-    ID_HOME_BTN = 1001,
-    ID_DASHBOARD_BTN = 1002,
-    ID_CREATE_AI_BTN = 1003,
-    ID_MODELS_BTN = 1004,
-    ID_SETTINGS_BTN = 1005,
-    ID_CONTENT_AREA = 2000,
-    ID_TITLE_TEXT = 2001
-};
-
-// Page types
-enum PageType {
-    PAGE_HOME = 0,
-    PAGE_DASHBOARD = 1,
-    PAGE_CREATE_AI = 2,
-    PAGE_MODELS = 3,
-    PAGE_SETTINGS = 4
+    ID_TAB_NN_AI = 1001,
+    ID_TAB_NN_STORAGE = 1002,
+    ID_TAB_AI_H = 1003,
+    ID_TAB_AI_B = 1004,
+    ID_TAB_AI_LAB = 1005,
+    ID_TAB_AI_PROMPT = 1006
 };
 
 class MainWindow {
 private:
     HWND hwnd_;
-    HWND hSidebar_;
-    HWND hContentArea_;
-    HWND hNavButtons_[5];
-    PageType currentPage_;
+    HWND hTabButtons_[6];
+    int currentTab_;
     HBRUSH hBrushDark_;
     HBRUSH hBrushButton_;
+    HBRUSH hBrushBorder_;
     HFONT hFontTitle_;
     HFONT hFontNormal_;
+    HFONT hFontSmall_;
+    HPEN hPenGreen_;
+    HPEN hPenGraph1_;
+    HPEN hPenGraph2_;
+    HPEN hPenGraph3_;
+    HPEN hPenGraph4_;
 
 public:
-    MainWindow() : hwnd_(nullptr), currentPage_(PAGE_HOME) {
-        // Create brushes
+    MainWindow() : hwnd_(nullptr), currentTab_(0) {
         hBrushDark_ = CreateSolidBrush(COLOR_DARK_BG);
         hBrushButton_ = CreateSolidBrush(COLOR_BUTTON);
+        hBrushBorder_ = CreateSolidBrush(COLOR_BORDER);
         
-        // Create fonts
-        hFontTitle_ = CreateFontA(24, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, 
-                                   DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, 
+        hFontTitle_ = CreateFontA(28, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE,
+                                   DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
                                    DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
         hFontNormal_ = CreateFontA(14, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
                                     DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
                                     DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+        hFontSmall_ = CreateFontA(11, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
+                                   DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+                                   DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+        
+        hPenGreen_ = CreatePen(PS_SOLID, 2, COLOR_NEON_GREEN);
+        hPenGraph1_ = CreatePen(PS_SOLID, 2, COLOR_GRAPH_LINE1);
+        hPenGraph2_ = CreatePen(PS_SOLID, 2, COLOR_GRAPH_LINE2);
+        hPenGraph3_ = CreatePen(PS_SOLID, 2, COLOR_GRAPH_LINE3);
+        hPenGraph4_ = CreatePen(PS_SOLID, 2, COLOR_GRAPH_LINE4);
     }
 
     ~MainWindow() {
         if (hBrushDark_) DeleteObject(hBrushDark_);
         if (hBrushButton_) DeleteObject(hBrushButton_);
+        if (hBrushBorder_) DeleteObject(hBrushBorder_);
         if (hFontTitle_) DeleteObject(hFontTitle_);
         if (hFontNormal_) DeleteObject(hFontNormal_);
+        if (hFontSmall_) DeleteObject(hFontSmall_);
+        if (hPenGreen_) DeleteObject(hPenGreen_);
+        if (hPenGraph1_) DeleteObject(hPenGraph1_);
+        if (hPenGraph2_) DeleteObject(hPenGraph2_);
+        if (hPenGraph3_) DeleteObject(hPenGraph3_);
+        if (hPenGraph4_) DeleteObject(hPenGraph4_);
     }
 
     bool Initialize() {
-        // Register window class
         WNDCLASSA wc = {};
         wc.lpfnWndProc = WndProc;
         wc.hInstance = GetModuleHandleA(nullptr);
@@ -75,171 +91,182 @@ public:
         wc.hbrBackground = hBrushDark_;
         wc.hCursor = LoadCursorA(nullptr, IDC_ARROW);
 
-        if (!RegisterClassA(&wc)) {
-            return false;
-        }
+        if (!RegisterClassA(&wc)) return false;
 
-        // Create main window
         hwnd_ = CreateWindowExA(
             0,
             "AICreatorMainWindow",
             "AI Creator - Intelligent AI Generation Platform",
             WS_OVERLAPPEDWINDOW,
-            100, 100, 1200, 800,
+            0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
             nullptr, nullptr, wc.hInstance, this
         );
 
-        if (!hwnd_) {
-            return false;
-        }
+        if (!hwnd_) return false;
 
-        // Create sidebar
-        CreateSidebar();
-        
-        // Create content area
-        hContentArea_ = CreateWindowExA(
-            0, "STATIC", "",
-            WS_CHILD | WS_VISIBLE,
-            200, 0, 1000, 800,
-            hwnd_, (HMENU)ID_CONTENT_AREA, GetModuleHandleA(nullptr), nullptr
-        );
-
-        // Show home page
-        ShowPage(PAGE_HOME);
-
+        CreateTabButtons();
         return true;
     }
 
-    void CreateSidebar() {
-        // Sidebar background
-        hSidebar_ = CreateWindowExA(
-            0, "STATIC", "",
-            WS_CHILD | WS_VISIBLE,
-            0, 0, 200, 800,
-            hwnd_, nullptr, GetModuleHandleA(nullptr), nullptr
-        );
+    void CreateTabButtons() {
+        const char* tabLabels[] = { "NN-AI", "NN-Storage", "AI-H", "AI-B", "AI-Lab", "AI-Prompt" };
+        int tabIDs[] = { ID_TAB_NN_AI, ID_TAB_NN_STORAGE, ID_TAB_AI_H, ID_TAB_AI_B, ID_TAB_AI_LAB, ID_TAB_AI_PROMPT };
 
-        // Navigation buttons
-        const char* btnLabels[] = { "Home", "Dashboard", "Create AI", "Models", "Settings" };
-        int btnIDs[] = { ID_HOME_BTN, ID_DASHBOARD_BTN, ID_CREATE_AI_BTN, ID_MODELS_BTN, ID_SETTINGS_BTN };
-
-        for (int i = 0; i < 5; i++) {
-            hNavButtons_[i] = CreateWindowExA(
-                0, "BUTTON", btnLabels[i],
+        for (int i = 0; i < 6; i++) {
+            hTabButtons_[i] = CreateWindowExA(
+                0, "BUTTON", tabLabels[i],
                 WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
-                10, 60 + (i * 60), 180, 50,
-                hwnd_, (HMENU)btnIDs[i], GetModuleHandleA(nullptr), nullptr
+                150 + (i * 140), 20, 130, 40,
+                hwnd_, (HMENU)tabIDs[i], GetModuleHandleA(nullptr), nullptr
             );
-
-            SendMessageA(hNavButtons_[i], WM_SETFONT, (WPARAM)hFontNormal_, TRUE);
+            SendMessageA(hTabButtons_[i], WM_SETFONT, (WPARAM)hFontNormal_, TRUE);
         }
     }
 
-    void ShowPage(PageType page) {
-        currentPage_ = page;
+    void OnTabClick(int tabID) {
+        currentTab_ = tabID - ID_TAB_NN_AI;
+        InvalidateRect(hwnd_, nullptr, FALSE);
+    }
 
-        // Clear content area
-        RECT rect;
-        GetClientRect(hContentArea_, &rect);
-        FillRect(GetDC(hContentArea_), &rect, hBrushDark_);
-
-        // Draw page content
-        HDC hdc = GetDC(hContentArea_);
+    void DrawContent(HDC hdc) {
+        RECT clientRect;
+        GetClientRect(hwnd_, &clientRect);
+        
+        // Draw title bar background
+        RECT titleRect = { 0, 0, clientRect.right, 80 };
+        FillRect(hdc, &titleRect, hBrushDark_);
+        
+        // Draw title
         SetBkColor(hdc, COLOR_DARK_BG);
         SetTextColor(hdc, COLOR_NEON_GREEN);
+        SelectObject(hdc, hFontTitle_);
+        TextOutA(hdc, 30, 30, "AI Creator Dashboard", 19);
 
-        switch (page) {
-            case PAGE_HOME:
-                DrawHomePage(hdc);
-                break;
-            case PAGE_DASHBOARD:
-                DrawDashboardPage(hdc);
-                break;
-            case PAGE_CREATE_AI:
-                DrawCreateAIPage(hdc);
-                break;
-            case PAGE_MODELS:
-                DrawModelsPage(hdc);
-                break;
-            case PAGE_SETTINGS:
-                DrawSettingsPage(hdc);
-                break;
+        // Draw main content area
+        RECT contentRect = { 0, 80, clientRect.right, clientRect.bottom };
+        FillRect(hdc, &contentRect, hBrushDark_);
+
+        // Draw three-column layout
+        int leftColWidth = (clientRect.right - 300) / 2;
+        int centerColWidth = (clientRect.right - 300) / 2;
+        int rightColWidth = 300;
+
+        // Left column: AI Usage
+        DrawLeftColumn(hdc, 10, 100, leftColWidth - 20, clientRect.bottom - 110);
+        
+        // Center column: AI Stage with graphs
+        DrawCenterColumn(hdc, leftColWidth + 10, 100, centerColWidth - 20, clientRect.bottom - 110);
+        
+        // Right sidebar
+        DrawRightSidebar(hdc, leftColWidth + centerColWidth + 10, 100, rightColWidth - 20, clientRect.bottom - 110);
+    }
+
+    void DrawLeftColumn(HDC hdc, int x, int y, int width, int height) {
+        // Draw border
+        SelectObject(hdc, hPenGreen_);
+        Rectangle(hdc, x, y, x + width, y + height);
+
+        // Draw title
+        SetTextColor(hdc, COLOR_NEON_GREEN);
+        SelectObject(hdc, hFontNormal_);
+        TextOutA(hdc, x + 10, y + 10, "AI-Usage", 8);
+
+        // Draw stats
+        SetTextColor(hdc, COLOR_TEXT);
+        SelectObject(hdc, hFontSmall_);
+        TextOutA(hdc, x + 10, y + 50, "ELA writer", 10);
+        TextOutA(hdc, x + 10, y + 80, "1M - 11%", 8);
+        TextOutA(hdc, x + 10, y + 110, "16M64%", 6);
+
+        // Draw mini graph
+        DrawMiniGraph(hdc, x + 10, y + 150, width - 20, height - 170);
+    }
+
+    void DrawCenterColumn(HDC hdc, int x, int y, int width, int height) {
+        // Draw border
+        SelectObject(hdc, hPenGreen_);
+        Rectangle(hdc, x, y, x + width, y + height);
+
+        // Draw title
+        SetTextColor(hdc, COLOR_NEON_GREEN);
+        SelectObject(hdc, hFontNormal_);
+        TextOutA(hdc, x + 10, y + 10, "AI-Stage", 8);
+
+        // Draw stats
+        SetTextColor(hdc, COLOR_TEXT);
+        SelectObject(hdc, hFontSmall_);
+        TextOutA(hdc, x + 10, y + 50, "ELA-writer: 4GB", 15);
+        TextOutA(hdc, x + 10, y + 80, "AI-42: Active", 12);
+
+        // Draw main performance graph
+        DrawPerformanceGraph(hdc, x + 10, y + 120, width - 20, height - 140);
+    }
+
+    void DrawRightSidebar(HDC hdc, int x, int y, int width, int height) {
+        // Draw border
+        SelectObject(hdc, hPenGreen_);
+        Rectangle(hdc, x, y, x + width, y + height);
+
+        // Draw title
+        SetTextColor(hdc, COLOR_NEON_GREEN);
+        SelectObject(hdc, hFontNormal_);
+        TextOutA(hdc, x + 10, y + 10, "Sidebar", 7);
+
+        // Draw info items
+        SetTextColor(hdc, COLOR_TEXT);
+        SelectObject(hdc, hFontSmall_);
+        TextOutA(hdc, x + 10, y + 50, "More data", 9);
+        TextOutA(hdc, x + 10, y + 80, "More defined graphs", 19);
+        TextOutA(hdc, x + 10, y + 110, "Tree data", 9);
+        TextOutA(hdc, x + 10, y + 140, "Page selected", 13);
+        TextOutA(hdc, x + 10, y + 170, "Neural Network", 14);
+        TextOutA(hdc, x + 10, y + 200, "AI-Creator creations", 20);
+    }
+
+    void DrawMiniGraph(HDC hdc, int x, int y, int width, int height) {
+        // Draw graph border
+        SelectObject(hdc, hPenGreen_);
+        Rectangle(hdc, x, y, x + width, y + height);
+
+        // Draw simple sine wave
+        SelectObject(hdc, hPenGraph1_);
+        for (int i = 0; i < width - 10; i++) {
+            double angle = (double)i / 20.0;
+            int y1 = y + height / 2 + (int)(50 * sin(angle));
+            int y2 = y + height / 2 + (int)(50 * sin(angle + 0.1));
+            MoveToEx(hdc, x + 5 + i, y1, nullptr);
+            LineTo(hdc, x + 5 + i + 1, y2);
+        }
+    }
+
+    void DrawPerformanceGraph(HDC hdc, int x, int y, int width, int height) {
+        // Draw graph border
+        SelectObject(hdc, hPenGreen_);
+        Rectangle(hdc, x, y, x + width, y + height);
+
+        // Draw grid lines
+        SelectObject(hdc, hPenGreen_);
+        for (int i = 0; i < 5; i++) {
+            int lineY = y + (height / 4) * i;
+            MoveToEx(hdc, x, lineY, nullptr);
+            LineTo(hdc, x + width, lineY);
         }
 
-        ReleaseDC(hContentArea_, hdc);
-    }
-
-    void DrawHomePage(HDC hdc) {
-        SelectObject(hdc, hFontTitle_);
-        TextOutA(hdc, 50, 50, "Welcome to AI Creator", 21);
-
-        SelectObject(hdc, hFontNormal_);
-        SetTextColor(hdc, COLOR_TEXT);
-        TextOutA(hdc, 50, 120, "Create, train, and deploy AI models with ease.", 45);
-        TextOutA(hdc, 50, 160, "Get started by creating a new AI model.", 39);
-        TextOutA(hdc, 50, 200, "Use the navigation menu on the left to explore features.", 54);
-    }
-
-    void DrawDashboardPage(HDC hdc) {
-        SelectObject(hdc, hFontTitle_);
-        TextOutA(hdc, 50, 50, "Dashboard", 9);
-
-        SelectObject(hdc, hFontNormal_);
-        SetTextColor(hdc, COLOR_TEXT);
-        TextOutA(hdc, 50, 120, "Active Models: 0", 15);
-        TextOutA(hdc, 50, 160, "Total Trained: 0", 15);
-        TextOutA(hdc, 50, 200, "System Status: Ready", 20);
-    }
-
-    void DrawCreateAIPage(HDC hdc) {
-        SelectObject(hdc, hFontTitle_);
-        TextOutA(hdc, 50, 50, "Create New AI Model", 18);
-
-        SelectObject(hdc, hFontNormal_);
-        SetTextColor(hdc, COLOR_TEXT);
-        TextOutA(hdc, 50, 120, "Model Name:", 11);
-        TextOutA(hdc, 50, 170, "Algorithm:", 10);
-        TextOutA(hdc, 50, 220, "Framework:", 10);
-    }
-
-    void DrawModelsPage(HDC hdc) {
-        SelectObject(hdc, hFontTitle_);
-        TextOutA(hdc, 50, 50, "AI Models", 9);
-
-        SelectObject(hdc, hFontNormal_);
-        SetTextColor(hdc, COLOR_TEXT);
-        TextOutA(hdc, 50, 120, "No models created yet.", 22);
-        TextOutA(hdc, 50, 160, "Create a new model to get started.", 33);
-    }
-
-    void DrawSettingsPage(HDC hdc) {
-        SelectObject(hdc, hFontTitle_);
-        TextOutA(hdc, 50, 50, "Settings", 8);
-
-        SelectObject(hdc, hFontNormal_);
-        SetTextColor(hdc, COLOR_TEXT);
-        TextOutA(hdc, 50, 120, "Theme: Dark (QIX Branding)", 26);
-        TextOutA(hdc, 50, 160, "Auto-save: Enabled", 18);
-        TextOutA(hdc, 50, 200, "Version: 1.0.0", 14);
-    }
-
-    void OnButtonClick(int buttonID) {
-        switch (buttonID) {
-            case ID_HOME_BTN:
-                ShowPage(PAGE_HOME);
-                break;
-            case ID_DASHBOARD_BTN:
-                ShowPage(PAGE_DASHBOARD);
-                break;
-            case ID_CREATE_AI_BTN:
-                ShowPage(PAGE_CREATE_AI);
-                break;
-            case ID_MODELS_BTN:
-                ShowPage(PAGE_MODELS);
-                break;
-            case ID_SETTINGS_BTN:
-                ShowPage(PAGE_SETTINGS);
-                break;
+        // Draw multiple performance lines
+        HPEN pens[] = { hPenGraph1_, hPenGraph2_, hPenGraph3_, hPenGraph4_ };
+        
+        for (int line = 0; line < 4; line++) {
+            SelectObject(hdc, pens[line]);
+            for (int i = 0; i < width - 20; i++) {
+                double angle = (double)i / 30.0 + (line * 0.5);
+                int y1 = y + height / 2 + (int)((height / 3) * sin(angle));
+                int y2 = y + height / 2 + (int)((height / 3) * sin(angle + 0.05));
+                
+                if (y1 >= y && y1 <= y + height && y2 >= y && y2 <= y + height) {
+                    MoveToEx(hdc, x + 10 + i, y1, nullptr);
+                    LineTo(hdc, x + 10 + i + 1, y2);
+                }
+            }
         }
     }
 
@@ -260,16 +287,21 @@ public:
 
         switch (msg) {
             case WM_COMMAND:
-                pThis->OnButtonClick(LOWORD(wParam));
+                pThis->OnTabClick(LOWORD(wParam));
                 return 0;
 
             case WM_PAINT: {
                 PAINTSTRUCT ps;
                 HDC hdc = BeginPaint(hwnd, &ps);
-                FillRect(hdc, &ps.rcPaint, pThis->hBrushDark_);
+                pThis->DrawContent(hdc);
                 EndPaint(hwnd, &ps);
                 return 0;
             }
+
+            case WM_SIZE:
+            case WM_SIZING:
+                InvalidateRect(hwnd, nullptr, FALSE);
+                return 0;
 
             case WM_DESTROY:
                 PostQuitMessage(0);
@@ -285,14 +317,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     MainWindow mainWindow;
     
     if (!mainWindow.Initialize()) {
-        MessageBoxA(nullptr, "Failed to initialize main window", "Error", MB_OK | MB_ICONERROR);
+        MessageBoxA(nullptr, "Failed to initialize application", "Error", MB_OK | MB_ICONERROR);
         return 1;
     }
 
-    ShowWindow(mainWindow.GetHwnd(), nCmdShow);
+    ShowWindow(mainWindow.GetHwnd(), SW_MAXIMIZE);
     UpdateWindow(mainWindow.GetHwnd());
 
-    // Message loop
     MSG msg = {};
     while (GetMessageA(&msg, nullptr, 0, 0)) {
         TranslateMessage(&msg);
