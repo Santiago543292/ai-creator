@@ -1,39 +1,27 @@
 #include <windows.h>
 #include <shellapi.h>
-#include <string>
 
+// Simple message box that opens the web interface
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    // Get the directory where the executable is located
+    // Get executable directory
     char exePath[MAX_PATH];
     GetModuleFileNameA(nullptr, exePath, MAX_PATH);
     
-    // Find the last backslash
-    char* lastBackslash = strrchr(exePath, '\\');
-    if (lastBackslash) {
-        *lastBackslash = '\0';
+    // Find last backslash
+    char* lastSlash = strrchr(exePath, '\\');
+    if (lastSlash) {
+        *lastSlash = '\0';
     }
 
-    // Construct path to index.html
-    std::string webPath = std::string(exePath) + "\\web\\index.html";
-    
-    // Launch the web interface
-    HINSTANCE result = ShellExecuteA(nullptr, "open", webPath.c_str(), nullptr, nullptr, SW_SHOW);
-    
-    // Check if ShellExecute succeeded (returns > 32 on success)
-    if ((int)result <= 32) {
-        // If opening HTML file fails, try opening with file:// protocol
-        std::string fileUrl = "file:///" + webPath;
-        // Replace backslashes with forward slashes for URL
-        for (size_t i = 0; i < fileUrl.length(); i++) {
-            if (fileUrl[i] == '\\') {
-                fileUrl[i] = '/';
-            }
-        }
-        ShellExecuteA(nullptr, "open", fileUrl.c_str(), nullptr, nullptr, SW_SHOW);
-    }
+    // Build path to index.html
+    char webPath[MAX_PATH];
+    sprintf_s(webPath, MAX_PATH, "%s\\web\\index.html", exePath);
 
-    // Keep the application running for a moment to ensure the browser launches
-    Sleep(500);
+    // Try to open the HTML file with default browser
+    ShellExecuteA(nullptr, "open", webPath, nullptr, nullptr, SW_SHOW);
+
+    // Wait a bit
+    Sleep(1000);
 
     return 0;
 }
