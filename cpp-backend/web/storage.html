@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NN-Storage - Neural Network Storage | QIX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="QIX Logo" class="logo-img">
+                <span class="logo-text">QIX</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="nn-ai.html" class="nav-link">NN-AI</a></li>
+                <li class="nav-item"><a href="storage.html" class="nav-link active">NN-Storage</a></li>
+                <li class="nav-item"><a href="models.html" class="nav-link">AI-Models</a></li>
+                <li class="nav-item"><a href="builder.html" class="nav-link">AI-Builder</a></li>
+                <li class="nav-item"><a href="lab.html" class="nav-link">AI-Lab</a></li>
+                <li class="nav-item"><a href="playground.html" class="nav-link">Playground</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Neural Network Storage</h1>
+            <p>Total storage on the user's PC - Monitor usage on the AI-Creator and its creations</p>
+        </div>
+    </section>
+
+    <!-- Storage Usage Overview -->
+    <section class="storage-overview">
+        <div class="container">
+            <h2 class="section-title">AI Usage & Stage</h2>
+            
+            <div class="storage-grid">
+                <div class="storage-card">
+                    <h3>AI-Usage</h3>
+                    <div class="model-storage">
+                        <div class="storage-item">
+                            <div class="storage-header">
+                                <span class="model-name">ELA Writer</span>
+                                <span class="storage-size">4GB</span>
+                            </div>
+                            <div class="storage-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">IM</span>
+                                    <span class="metric-value">-11%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">6M Req</span>
+                                    <span class="metric-value">+6%</span>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="storage-card">
+                    <h3>AI-Stage</h3>
+                    <div class="model-storage">
+                        <div class="storage-item">
+                            <div class="storage-header">
+                                <span class="model-name">ELA-Writer</span>
+                                <span class="storage-size">4GB</span>
+                            </div>
+                            <div class="storage-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Stage</span>
+                                    <span class="metric-value">AI #2</span>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 46%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storage Performance Charts -->
+    <section class="storage-charts">
+        <div class="container">
+            <h2 class="section-title">Storage Performance Metrics</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Model Storage Comparison</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="color-dot" style="background: #6366f1;"></span>
+                            <span>ELA-Writer - 4GB</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-dot" style="background: #ef4444;"></span>
+                            <span>Math-Solver - 6GB</span>
+                        </div>
+                    </div>
+                    <div class="simulated-chart">
+                        <canvas id="storageChart1"></canvas>
+                    </div>
+                    <p class="chart-description">True data that happened - showing actual storage usage over time</p>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Usage Metrics Over Time</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="color-dot" style="background: #10b981;"></span>
+                            <span>ELA-Writer: IM -11%, 6M +6%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-dot" style="background: #f59e0b;"></span>
+                            <span>Math-Solver: IM +11%, 6M -15%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-dot" style="background: #ec4899;"></span>
+                            <span>Video-Maker: IM -18%, 6M -22%</span>
+                        </div>
+                    </div>
+                    <div class="simulated-chart">
+                        <canvas id="storageChart2"></canvas>
+                    </div>
+                    <p class="chart-description">More defined graphics showing page selected data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storage Details -->
+    <section class="storage-details">
+        <div class="container">
+            <h2 class="section-title">Detailed Storage Information</h2>
+            
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3>Neural Network Storage</h3>
+                    <div class="detail-content">
+                        <div class="detail-row">
+                            <span class="detail-label">Total Storage Used:</span>
+                            <span class="detail-value">10GB</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Available Space:</span>
+                            <span class="detail-value">240GB</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Storage Location:</span>
+                            <span class="detail-value">User's PC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Usage on AI-Creator</h3>
+                    <div class="detail-content">
+                        <div class="detail-row">
+                            <span class="detail-label">Active AI Models:</span>
+                            <span class="detail-value">3</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Total Creations:</span>
+                            <span class="detail-value">12</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Storage Efficiency:</span>
+                            <span class="detail-value">92%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <h3>AI Creations Storage</h3>
+                    <div class="detail-content">
+                        <div class="detail-row">
+                            <span class="detail-label">It will show the total storage:</span>
+                            <span class="detail-value">On the user's PC</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">As well as:</span>
+                            <span class="detail-value">It will show the total storage on the user's PC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Breakdown -->
+    <section class="model-breakdown">
+        <div class="container">
+            <h2 class="section-title">Storage Breakdown by Model</h2>
+            
+            <div class="breakdown-list">
+                <div class="breakdown-item">
+                    <div class="breakdown-header">
+                        <h4>ELA-Writer</h4>
+                        <span class="size-badge">4GB</span>
+                    </div>
+                    <div class="breakdown-details">
+                        <p>IM: -11% | 6M: +6%</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill ela-fill" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="breakdown-header">
+                        <h4>Math-Solver</h4>
+                        <span class="size-badge">6GB</span>
+                    </div>
+                    <div class="breakdown-details">
+                        <p>IM: +11% | 6M: -15%</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill math-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="breakdown-header">
+                        <h4>Video-Maker</h4>
+                        <span class="size-badge">Coming Soon</span>
+                    </div>
+                    <div class="breakdown-details">
+                        <p>IM: -18% | 6M: -22%</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill video-fill" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sidebar Info -->
+    <section class="sidebar-info">
+        <div class="container">
+            <div class="info-boxes">
+                <div class="info-box">
+                    <h3>More Data</h3>
+                    <p>Access comprehensive storage analytics and usage patterns</p>
+                </div>
+                <div class="info-box">
+                    <h3>More Defined Graphics</h3>
+                    <p>Visualize storage distribution across all AI models</p>
+                </div>
+                <div class="info-box">
+                    <h3>Page Selected</h3>
+                    <p>Neural Network Storage - Usage on the AI-Creator and its creations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="QIX Logo" class="footer-logo-img">
+                        <span>QIX</span>
+                    </div>
+                    <p class="footer-tagline">A New Future of AI Creation</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="nn-ai.html">NN-AI</a></li>
+                        <li><a href="storage.html">NN-Storage</a></li>
+                        <li><a href="models.html">AI Models</a></li>
+                        <li><a href="builder.html">AI Builder</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="lab.html">AI Lab</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QIX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

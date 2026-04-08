@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Models - Documentation | QIX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="QIX Logo" class="logo-img">
+                <span class="logo-text">QIX</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="nn-ai.html" class="nav-link">NN-AI</a></li>
+                <li class="nav-item"><a href="storage.html" class="nav-link">NN-Storage</a></li>
+                <li class="nav-item"><a href="models.html" class="nav-link active">AI-Models</a></li>
+                <li class="nav-item"><a href="builder.html" class="nav-link">AI-Builder</a></li>
+                <li class="nav-item"><a href="lab.html" class="nav-link">AI-Lab</a></li>
+                <li class="nav-item"><a href="playground.html" class="nav-link">Playground</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>AI Models Documentation</h1>
+            <p>What is in the AI-creator, Creators, and what skills they have - accuracy and new skills they are learning</p>
+        </div>
+    </section>
+
+    <!-- Model Selection -->
+    <section class="model-selection">
+        <div class="container">
+            <h2 class="section-title">Select AI Model</h2>
+            
+            <div class="model-selector">
+                <button class="selector-btn active" onclick="selectModel('math')">Math-Solver = Selected</button>
+                <button class="selector-btn" onclick="selectModel('ela')">ELA-Writer = Non-Selected</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Math Solver Details -->
+    <section id="math-model" class="model-details">
+        <div class="container">
+            <h2 class="section-title">Math-Solver Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-number">1</div>
+                    <h3>Math - Creator</h3>
+                    <p>Core mathematical problem creation and solving capabilities</p>
+                    <span class="skill-badge">Active</span>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-number">2</div>
+                    <h3>Speech - NN</h3>
+                    <p>Neural Network powered speech recognition and processing</p>
+                    <span class="skill-badge">Neural Network</span>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-number">3</div>
+                    <h3>Math Understanding - NN</h3>
+                    <p>Deep understanding of mathematical concepts through neural networks</p>
+                    <span class="skill-badge">Neural Network</span>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-number">4</div>
+                    <h3>Writing - NN</h3>
+                    <p>Mathematical notation and explanation writing capabilities</p>
+                    <span class="skill-badge">Neural Network</span>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-number">5</div>
+                    <h3>Math Solving - NN</h3>
+                    <p>Advanced problem-solving using neural network algorithms</p>
+                    <span class="skill-badge">Neural Network</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Correction Rate -->
+    <section class="correction-rate">
+        <div class="container">
+            <h2 class="section-title">Math-Solver Correction Rate</h2>
+            <p class="section-subtitle">Page Selected - True data that happened</p>
+            
+            <div class="rate-grid">
+                <div class="rate-card">
+                    <h3>Last Year (1y)</h3>
+                    <div class="rate-value">+68%</div>
+                    <p>Accuracy improvement</p>
+                </div>
+
+                <div class="rate-card">
+                    <h3>Last Week (1w)</h3>
+                    <div class="rate-value">+12%</div>
+                    <p>Weekly progress</p>
+                </div>
+
+                <div class="rate-card">
+                    <h3>6 Months (6m)</h3>
+                    <div class="rate-value">+49%</div>
+                    <p>Half-year growth</p>
+                </div>
+
+                <div class="rate-card">
+                    <h3>Last Month (1M)</h3>
+                    <div class="rate-value">+24%</div>
+                    <p>Monthly advancement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Rate Chart -->
+    <section class="learning-rate">
+        <div class="container">
+            <h2 class="section-title">Learning Rate Analysis</h2>
+            <p class="section-subtitle">What is in the AI-creator creators and what skills they have - accuracy any new they are learning</p>
+            
+            <div class="chart-container-large">
+                <div class="chart-info">
+                    <div class="info-stat">
+                        <span class="info-label">Current Accuracy:</span>
+                        <span class="info-value">+14%</span>
+                    </div>
+                    <div class="info-stat">
+                        <span class="info-label">New Skills Learning:</span>
+                        <span class="info-value">-80%</span>
+                    </div>
+                    <div class="info-stat">
+                        <span class="info-label">Overall Progress:</span>
+                        <span class="info-value">+17%</span>
+                    </div>
+                </div>
+                <div class="simulated-chart">
+                    <canvas id="learningChart"></canvas>
+                </div>
+                <p class="chart-note">More defined graphics showing true data that happened</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Comparison -->
+    <section class="model-comparison">
+        <div class="container">
+            <h2 class="section-title">Model Comparison</h2>
+            
+            <div class="comparison-table">
+                <div class="table-header">
+                    <div class="table-cell">Model</div>
+                    <div class="table-cell">Status</div>
+                    <div class="table-cell">Accuracy</div>
+                    <div class="table-cell">Skills</div>
+                    <div class="table-cell">Learning</div>
+                </div>
+                
+                <div class="table-row active-row">
+                    <div class="table-cell">
+                        <strong>Math-Solver</strong>
+                    </div>
+                    <div class="table-cell">
+                        <span class="status-badge selected">Selected</span>
+                    </div>
+                    <div class="table-cell">68%</div>
+                    <div class="table-cell">5 Skills</div>
+                    <div class="table-cell">+14%</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell">
+                        <strong>ELA-Writer</strong>
+                    </div>
+                    <div class="table-cell">
+                        <span class="status-badge">Non-Selected</span>
+                    </div>
+                    <div class="table-cell">--</div>
+                    <div class="table-cell">4 Skills</div>
+                    <div class="table-cell">--</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sidebar Info -->
+    <section class="sidebar-info">
+        <div class="container">
+            <div class="info-boxes">
+                <div class="info-box">
+                    <h3>Sidebar</h3>
+                    <p>More data about selected AI models</p>
+                </div>
+                <div class="info-box">
+                    <h3>More Data</h3>
+                    <p>Detailed information about AI capabilities and performance metrics</p>
+                </div>
+                <div class="info-box">
+                    <h3>More Defined Graphics</h3>
+                    <p>Enhanced visualizations of learning rates and accuracy improvements</p>
+                </div>
+                <div class="info-box">
+                    <h3>True Data That Happened</h3>
+                    <p>All displayed metrics are based on actual AI performance data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="QIX Logo" class="footer-logo-img">
+                        <span>QIX</span>
+                    </div>
+                    <p class="footer-tagline">A New Future of AI Creation</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="nn-ai.html">NN-AI</a></li>
+                        <li><a href="storage.html">NN-Storage</a></li>
+                        <li><a href="models.html">AI Models</a></li>
+                        <li><a href="builder.html">AI Builder</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="lab.html">AI Lab</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QIX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function selectModel(model) {
+            const buttons = document.querySelectorAll('.selector-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (model === 'math') {
+                event.target.textContent = 'Math-Solver = Selected';
+                buttons[1].textContent = 'ELA-Writer = Non-Selected';
+            } else {
+                event.target.textContent = 'ELA-Writer = Selected';
+                buttons[0].textContent = 'Math-Solver = Non-Selected';
+            }
+        }
+    </script>
+</body>
+</html>

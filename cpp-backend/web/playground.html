@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Playground - Test Your AI | QIX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="QIX Logo" class="logo-img">
+                <span class="logo-text">QIX</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="nn-ai.html" class="nav-link">NN-AI</a></li>
+                <li class="nav-item"><a href="storage.html" class="nav-link">NN-Storage</a></li>
+                <li class="nav-item"><a href="models.html" class="nav-link">AI-Models</a></li>
+                <li class="nav-item"><a href="builder.html" class="nav-link">AI-Builder</a></li>
+                <li class="nav-item"><a href="lab.html" class="nav-link">AI-Lab</a></li>
+                <li class="nav-item"><a href="playground.html" class="nav-link active">Playground</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>AI Playground</h1>
+            <p>The playground area will change depending on how the AI is used and will work</p>
+        </div>
+    </section>
+
+    <!-- Playground Overview -->
+    <section class="playground-overview">
+        <div class="container">
+            <h2 class="section-title">Dynamic Testing Environment</h2>
+            <p class="section-subtitle">Chosen by the NN/AI-Creator - Can be hosted on the internet using the user's PC</p>
+            
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+                        </svg>
+                    </div>
+                    <h3>Adaptive Interface</h3>
+                    <p>The playground changes based on which AI model you're testing and how you're using it.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>Internet Hosting</h3>
+                    <p>Deploy your playground to the internet directly from your PC for remote access.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6"/>
+                            <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24"/>
+                            <path d="M1 12h6m6 0h6"/>
+                            <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24"/>
+                        </svg>
+                    </div>
+                    <h3>NN/AI-Creator Control</h3>
+                    <p>Fully controlled by the neural network and AI creator you've configured.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Mode Selector -->
+    <section class="mode-selector">
+        <div class="container">
+            <h2 class="section-title">Select AI Mode</h2>
+            <p class="section-subtitle">The playground area will change depending on your selection</p>
+            
+            <div class="mode-buttons">
+                <button class="mode-btn active" onclick="switchMode('math')">
+                    <span class="mode-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="4" y1="9" x2="20" y2="9"/>
+                            <line x1="4" y1="15" x2="20" y2="15"/>
+                            <line x1="10" y1="3" x2="8" y2="21"/>
+                            <line x1="16" y1="3" x2="14" y2="21"/>
+                        </svg>
+                    </span>
+                    <span class="mode-name">Math Solver</span>
+                </button>
+                <button class="mode-btn" onclick="switchMode('ela')">
+                    <span class="mode-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </span>
+                    <span class="mode-name">ELA Writer</span>
+                </button>
+                <button class="mode-btn" onclick="switchMode('video')">
+                    <span class="mode-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                    </span>
+                    <span class="mode-name">Video Analysis</span>
+                </button>
+                <button class="mode-btn" onclick="switchMode('image')">
+                    <span class="mode-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </span>
+                    <span class="mode-name">Image Maker</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Playground -->
+    <section class="interactive-playground">
+        <div class="container">
+            <h2 class="section-title">Test Your AI</h2>
+            
+            <div class="playground-container">
+                <div class="playground-sidebar">
+                    <h3>Configuration</h3>
+                    <div class="config-group">
+                        <label>Model:</label>
+                        <select class="playground-select">
+                            <option>Math Solver v2H</option>
+                            <option>ELA Writer v4</option>
+                            <option>Video Movie v3</option>
+                            <option>Image Maker vS</option>
+                        </select>
+                    </div>
+                    <div class="config-group">
+                        <label>Temperature:</label>
+                        <input type="range" min="0" max="100" value="70" class="playground-slider">
+                        <span class="slider-value">0.7</span>
+                    </div>
+                    <div class="config-group">
+                        <label>Max Tokens:</label>
+                        <input type="number" value="1000" class="playground-input">
+                    </div>
+                    <div class="config-group">
+                        <label>Hosting:</label>
+                        <select class="playground-select">
+                            <option>Local PC</option>
+                            <option>Internet (via PC)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="playground-main">
+                    <div class="input-area">
+                        <h4>Input</h4>
+                        <textarea class="playground-textarea" placeholder="Enter your prompt or problem here...
+Example for Math Solver: Solve for x: 2x + 5 = 15
+Example for ELA Writer: Write a paragraph about space exploration"></textarea>
+                    </div>
+
+                    <div class="action-bar">
+                        <button class="btn btn-primary">Run AI</button>
+                        <button class="btn btn-secondary">Clear</button>
+                        <button class="btn btn-secondary">Save Result</button>
+                    </div>
+
+                    <div class="output-area">
+                        <h4>Output</h4>
+                        <div class="playground-output">
+                            <p class="output-placeholder">AI response will appear here...</p>
+                        </div>
+                    </div>
+
+                    <div class="metrics-bar">
+                        <div class="metric-item">
+                            <span class="metric-label">Processing Time:</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Tokens Used:</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Memory:</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playground Features -->
+    <section class="playground-features">
+        <div class="container">
+            <h2 class="section-title">Playground Features</h2>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-number">1</div>
+                    <div class="feature-content">
+                        <h3>Real-time Testing</h3>
+                        <p>Test your AI models in real-time with immediate feedback and results</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-number">2</div>
+                    <div class="feature-content">
+                        <h3>Email Integration</h3>
+                        <p>Connect with email services for automated communication and testing</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-number">3</div>
+                    <h3>Google Integration</h3>
+                        <p>Integration with Google services for expanded functionality</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-number">4</div>
+                    <div class="feature-content">
+                        <h3>3rd Fusion</h3>
+                        <p>Third-party integration capabilities for extended AI functionality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environment Status -->
+    <section class="environment-status">
+        <div class="container">
+            <h2 class="section-title">Environment Status</h2>
+            
+            <div class="status-panel">
+                <div class="status-row">
+                    <div class="status-item">
+                        <span class="status-label">Playground Status:</span>
+                        <span class="status-badge active">Active</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Hosting Location:</span>
+                        <span class="status-value">User's PC</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Internet Access:</span>
+                        <span class="status-badge enabled">Enabled</span>
+                    </div>
+                </div>
+
+                <div class="status-row">
+                    <div class="status-item">
+                        <span class="status-label">AI Creator:</span>
+                        <span class="status-value">NN/AI-Creator</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Mode:</span>
+                        <span class="status-value">Dynamic (Changes based on usage)</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Performance:</span>
+                        <span class="status-value performance-good">Excellent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sidebar Info -->
+    <section class="sidebar-info">
+        <div class="container">
+            <div class="info-boxes">
+                <div class="info-box">
+                    <h3>Area: You're Email</h3>
+                    <p>Email integration for playground testing</p>
+                </div>
+                <div class="info-box">
+                    <h3>Place: Google</h3>
+                    <p>Google services integration</p>
+                </div>
+                <div class="info-box">
+                    <h3>3rd Fusion</h3>
+                    <p>Third-party service connections</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="QIX Logo" class="footer-logo-img">
+                        <span>QIX</span>
+                    </div>
+                    <p class="footer-tagline">A New Future of AI Creation</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="nn-ai.html">NN-AI</a></li>
+                        <li><a href="storage.html">NN-Storage</a></li>
+                        <li><a href="models.html">AI Models</a></li>
+                        <li><a href="builder.html">AI Builder</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="lab.html">AI Lab</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QIX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function switchMode(mode) {
+            const buttons = document.querySelectorAll('.mode-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.mode-btn').classList.add('active');
+            
+            const placeholder = document.querySelector('.playground-textarea');
+            if (mode === 'math') {
+                placeholder.placeholder = 'Enter a math problem... Example: Solve for x: 2x + 5 = 15';
+            } else if (mode === 'ela') {
+                placeholder.placeholder = 'Enter a writing prompt... Example: Write a paragraph about space exploration';
+            } else if (mode === 'video') {
+                placeholder.placeholder = 'Enter video analysis request... Example: Analyze this video scene';
+            } else if (mode === 'image') {
+                placeholder.placeholder = 'Enter image creation prompt... Example: Create an image of a sunset';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Builder - Create Your AI | QIX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="QIX Logo" class="logo-img">
+                <span class="logo-text">QIX</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="nn-ai.html" class="nav-link">NN-AI</a></li>
+                <li class="nav-item"><a href="storage.html" class="nav-link">NN-Storage</a></li>
+                <li class="nav-item"><a href="models.html" class="nav-link">AI-Models</a></li>
+                <li class="nav-item"><a href="builder.html" class="nav-link active">AI-Builder</a></li>
+                <li class="nav-item"><a href="lab.html" class="nav-link">AI-Lab</a></li>
+                <li class="nav-item"><a href="playground.html" class="nav-link">Playground</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>AI Builder</h1>
+            <p>Build an AI with the AI creator and it will be hosted on the user's PC to make the AI be created</p>
+        </div>
+    </section>
+
+    <!-- Build Process -->
+    <section class="build-process">
+        <div class="container">
+            <h2 class="section-title">Stuff to Build an AI</h2>
+            <p class="section-subtitle">With the AI creator and will be hosted on the user's PC</p>
+            
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Sign of Neural Network</h3>
+                    <p>Variables the neural network will have. Define the architecture and structure of your AI model.</p>
+                    <div class="step-action">
+                        <button class="btn btn-secondary">Configure Network</button>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Data the AI Will Use</h3>
+                    <p>Select and prepare the data that your AI will learn from and process.</p>
+                    <div class="step-action">
+                        <button class="btn btn-secondary">Upload Data</button>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>What Skills Can Be Learned</h3>
+                    <p>For the AI creator - choose which capabilities your AI will develop.</p>
+                    <div class="step-action">
+                        <button class="btn btn-secondary">Select Skills</button>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>What Skills It Will Have</h3>
+                    <p>For the AI's creations - define the final capabilities of your trained model.</p>
+                    <div class="step-action">
+                        <button class="btn btn-secondary">Define Outputs</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neural Network Configuration -->
+    <section class="network-config">
+        <div class="container">
+            <h2 class="section-title">Neural Network Configuration</h2>
+            
+            <div class="config-grid">
+                <div class="config-card">
+                    <h3>Variables the Neural Network Will Have</h3>
+                    <div class="config-options">
+                        <div class="config-item">
+                            <label>Network Type:</label>
+                            <select class="config-select">
+                                <option>Feedforward Neural Network</option>
+                                <option>Convolutional Neural Network</option>
+                                <option>Recurrent Neural Network</option>
+                                <option>Transformer</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label>Hidden Layers:</label>
+                            <input type="number" class="config-input" value="3" min="1" max="10">
+                        </div>
+                        <div class="config-item">
+                            <label>Neurons per Layer:</label>
+                            <input type="number" class="config-input" value="128" min="8" max="1024">
+                        </div>
+                        <div class="config-item">
+                            <label>Activation Function:</label>
+                            <select class="config-select">
+                                <option>ReLU</option>
+                                <option>Sigmoid</option>
+                                <option>Tanh</option>
+                                <option>Leaky ReLU</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-card">
+                    <h3>Data Configuration</h3>
+                    <div class="config-options">
+                        <div class="config-item">
+                            <label>Training Data Size:</label>
+                            <input type="text" class="config-input" placeholder="e.g., 10000 samples">
+                        </div>
+                        <div class="config-item">
+                            <label>Validation Split:</label>
+                            <input type="number" class="config-input" value="20" min="10" max="50">
+                            <span class="input-suffix">%</span>
+                        </div>
+                        <div class="config-item">
+                            <label>Batch Size:</label>
+                            <input type="number" class="config-input" value="32" min="1" max="256">
+                        </div>
+                        <div class="config-item">
+                            <label>Learning Rate:</label>
+                            <input type="number" class="config-input" value="0.001" step="0.0001" min="0.0001" max="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Selection -->
+    <section class="skills-selection">
+        <div class="container">
+            <h2 class="section-title">Skills for the AI Creator</h2>
+            <p class="section-subtitle">What skills can be learned - and what skills it will have for the AI's creations</p>
+            
+            <div class="skills-options">
+                <div class="skill-option">
+                    <input type="checkbox" id="skill-math" checked>
+                    <label for="skill-math">
+                        <span class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="4" y1="9" x2="20" y2="9"/>
+                                <line x1="4" y1="15" x2="20" y2="15"/>
+                                <line x1="10" y1="3" x2="8" y2="21"/>
+                                <line x1="16" y1="3" x2="14" y2="21"/>
+                            </svg>
+                        </span>
+                        <span class="skill-name">Math Solving</span>
+                        <span class="skill-desc">Mathematical problem-solving capabilities</span>
+                    </label>
+                </div>
+
+                <div class="skill-option">
+                    <input type="checkbox" id="skill-writing" checked>
+                    <label for="skill-writing">
+                        <span class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </span>
+                        <span class="skill-name">Writing & Content</span>
+                        <span class="skill-desc">Text generation and content creation</span>
+                    </label>
+                </div>
+
+                <div class="skill-option">
+                    <input type="checkbox" id="skill-speech">
+                    <label for="skill-speech">
+                        <span class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                        </span>
+                        <span class="skill-name">Speech Recognition</span>
+                        <span class="skill-desc">Voice input processing and understanding</span>
+                    </label>
+                </div>
+
+                <div class="skill-option">
+                    <input type="checkbox" id="skill-video">
+                    <label for="skill-video">
+                        <span class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                            </svg>
+                        </span>
+                        <span class="skill-name">Video Analysis</span>
+                        <span class="skill-desc">Video content understanding and processing</span>
+                    </label>
+                </div>
+
+                <div class="skill-option">
+                    <input type="checkbox" id="skill-image">
+                    <label for="skill-image">
+                        <span class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </span>
+                        <span class="skill-name">Image Generation</span>
+                        <span class="skill-desc">Create and manipulate visual content</span>
+                    </label>
+                </div>
+
+                <div class="skill-option">
+                    <input type="checkbox" id="skill-understanding">
+                    <label for="skill-understanding">
+                        <span class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </span>
+                        <span class="skill-name">Deep Understanding</span>
+                        <span class="skill-desc">Comprehension and reasoning abilities</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hosting Configuration -->
+    <section class="hosting-config">
+        <div class="container">
+            <h2 class="section-title">Hosting Configuration</h2>
+            <p class="section-subtitle">The AI will be hosted on the user's PC to make the AI be created</p>
+            
+            <div class="hosting-grid">
+                <div class="hosting-card">
+                    <h3>Local PC Hosting</h3>
+                    <p>Your AI will run directly on your computer, giving you full control and privacy.</p>
+                    <div class="hosting-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Required RAM:</span>
+                            <span class="spec-value">8GB+</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Storage Space:</span>
+                            <span class="spec-value">10-50GB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">GPU:</span>
+                            <span class="spec-value">Recommended</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hosting-card">
+                    <h3>Internet Deployment</h3>
+                    <p>Move your AI to the internet to make things like products and research available online.</p>
+                    <div class="hosting-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Bandwidth:</span>
+                            <span class="spec-value">High-speed recommended</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Uptime:</span>
+                            <span class="spec-value">24/7 possible</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Access:</span>
+                            <span class="spec-value">Remote API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Build Action -->
+    <section class="build-action">
+        <div class="container">
+            <div class="action-panel">
+                <h2>Ready to Build Your AI?</h2>
+                <p>All configurations set. Start the creation process and host it on your PC.</p>
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-large">Start Building AI</button>
+                    <button class="btn btn-secondary btn-large">Save Configuration</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sidebar Info -->
+    <section class="sidebar-info">
+        <div class="container">
+            <div class="info-boxes">
+                <div class="info-box">
+                    <h3>Sidebar</h3>
+                    <p>Sign of Neural Network</p>
+                </div>
+                <div class="info-box">
+                    <h3>Variables Me Must Network Will Have</h3>
+                    <p>Configure the neural network architecture and parameters</p>
+                </div>
+                <div class="info-box">
+                    <h3>Data the AI Will Use</h3>
+                    <p>Upload and prepare training data for your AI model</p>
+                </div>
+                <div class="info-box">
+                    <h3>What Skills Can Be Learned</h3>
+                    <p>For the AI creator - select capabilities to develop</p>
+                </div>
+                <div class="info-box">
+                    <h3>What Skill Will It Have</h3>
+                    <p>For the AI's creations - define final model abilities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="QIX Logo" class="footer-logo-img">
+                        <span>QIX</span>
+                    </div>
+                    <p class="footer-tagline">A New Future of AI Creation</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="nn-ai.html">NN-AI</a></li>
+                        <li><a href="storage.html">NN-Storage</a></li>
+                        <li><a href="models.html">AI Models</a></li>
+                        <li><a href="builder.html">AI Builder</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="lab.html">AI Lab</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QIX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
