@@ -21,6 +21,14 @@ add_executable(ai_creator WIN32
     src/main.cpp
 )
 
+# Copy web files to output directory
+add_custom_command(TARGET ai_creator POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/web
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/web
+    COMMENT "Copying web files to output directory"
+)
+
 # Windows-specific settings
 if(WIN32)
     # Windows API libraries
